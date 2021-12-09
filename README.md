@@ -5,4 +5,5 @@ The purpose of this project is to visually show the differences between the magn
 Resources:
 
 Data Source: Tectonic Plat GeoJASON, Earthquake GeoJASON, Earthquake above 4.5mag GeoJASON
+
 Software: Visual Studio Code, Leaflet, HTML/CSS...
