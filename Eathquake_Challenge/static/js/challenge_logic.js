@@ -1,3 +1,4 @@
+
 // Add console.log to check to see if our code is working.
 console.log("working");
 
@@ -25,20 +26,20 @@ let map = L.map('mapid', {
 // Create a base layer that holds all three maps.
 let baseMaps = {
   "Streets": streets,
-  "Satellite": satelliteStreets
-  "Dark": dark
+  "Satellite": satelliteStreets,
+  // "Dark": dark
 };
 
 // 1. Add a 2nd layer group for the tectonic plate data.
 let allEarthquakes = new L.LayerGroup();
-let tectonicPlates = new L.LayGroup();
+let tectonicPlates = new L.LayerGroup();
 let majorEarthquakes = new L.LayerGroup();
 
-// 2. Add a reference to the tectonic plates group to the overlays object.
+// 2. Add a reference to the tectonic plates group to the overlays object\let overlays = {
 let overlays = {
-  "Earthquakes": allEarthquakes
-  "Tectonic Plates": tectonicPlates
-  "Major Earthquakes": majorEarthquakes"
+"Earthquakes" : allEarthquakes,
+"Tectonic Plates": tectonicPlates,
+"Major Earthquakes": majorEarthquakes,
 };
 
 // Then we add a control to the map that will allow the user to change which
@@ -103,7 +104,7 @@ d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geoj
     style: styleInfo,
      // We create a popup for each circleMarker to display the magnitude and location of the earthquake
      //  after the marker has been created and styled.
-     onEachFeature: function(feature, layer) {
+    onEachFeature: function(feature, layer) {
       layer.bindPopup("Magnitude: " + feature.properties.mag + "<br>Location: " + feature.properties.place);
     }
   }).addTo(allEarthquakes);
@@ -149,12 +150,14 @@ function getRadius(magnitude) {
 // 7. Creating a GeoJSON layer with the retrieved data that adds a circle to the map 
 // sets the style of the circle, and displays the magnitude and location of the earthquake
 //  after the marker has been created and styled.
-L.geoJson(date, {
-  pointToLayer: function(features, lating) {
+L.geoJson((date) => {
+  pointToLayer: functions(features, lating) 
+  {
     return L.circleMarker(latlng);
-  },
+  }
   style: styleInfo,
-  onEachFeature: function(feathure, layer) {
+  onEachFeature; functions(feathure, layer) 
+  {
     layer.bindPopup("Magnitude: " + feature.properties.mag + "<br>Location: " + feature.properties.place);
   }  
 }).addTo(majorEarthquakes);
@@ -195,7 +198,7 @@ legend.onAdd = function() {
   legend.addTo(map);
 
   // 3. Use d3.json to make a call to get our Tectonic Plate geoJSON data.
-  d3.json("https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json").then(() {
+  d3.json("https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json").then((data) => {
     console.log(data);
     L.geojson(data, {
       style: {color: "#703606", weight: 3},
